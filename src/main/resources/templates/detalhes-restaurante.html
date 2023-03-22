@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${restaurante}">
+    <h2 th:case="null">Restaurante Não encontrado</h2>
+    <div th:case="*">
+        <h2>Restaurantes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+            </tr>
+            </thead>
+            <tr th:each="restaurante: ${restaurante}">
+                <td th:text="${restaurante.nome}"></td>
+            </tr>
+        </table>
+        <form method="post">
+            <div>Nome:<input type="text" value="" name="nomeCardapio"></div>
+            <input type="submit" value="Adicionar">
+
+        </form>
+    </div>
+    <p><a href="/novo-restaurante">Adiconar Novo Restaurante</a></p>
+</div>
+</body>
+</html>

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RestauranteController {
     @Autowired
     RestauranteRepository restauranteRepository;
-
+    @Autowired
+    CardapioRepository cardapioRepository;
     @GetMapping("/novo-restaurante")
     public String mostrarFromNovoRestaurante(Restaurante restaurante){
         return "novo-restaurante";
@@ -42,6 +43,7 @@ public class RestauranteController {
         return "atualizar-restaurante";
     }
 
+
     @PostMapping("/atualizar/{id}")
     public String atualizarRestaurante(@PathVariable("id") int id, @Valid Restaurante restaurante, BindingResult result, Model model){
         if (result.hasErrors()) {
@@ -58,5 +60,13 @@ public class RestauranteController {
         restauranteRepository.delete(restaurante);
         return "redirect:/index";
     }
+
+    @GetMapping("/detalhes/{id}")
+    public String detalhesRestaurante(@PathVariable("id") int id,Model model){
+        Restaurante restaurante = restauranteRepository.findById(id).orElseThrow((() -> new IllegalArgumentException("o id do resturante é invalido" +id)));
+        model.addAttribute("restaurante",restaurante);
+        return "detalhes-restaurante";
+    }
+
 
 }

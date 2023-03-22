@@ -19,6 +19,8 @@
                     <td th:text="${restaurante.nome}"></td>
                     <td><a th:href="@{/iditar/{id}(id=${restaurante.id})}">Editar</a></td>
                     <td><a th:href="@{/remover/{id}(id=${restaurante.id})}">Remover</a></td>
+                    <td><a th:href="@{/detalhes/{id}(id=${restaurante.id})}">Cardapio</a></td>
+
 
                 </tr>
             </table>
