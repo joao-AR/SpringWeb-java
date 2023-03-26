@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin ifood</title>
 </head>
-<body>
+<body style="margin: 0px;">
+    <div style="width: 100%; display:flex ; justify-content: left; background-color: #EA1D2C;">
+        <span style="color: #fff;">Admin Ifood</span>
+    </div>
     <div th:switch="${restaurantes}">
         <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
         <div th:case="*">

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/atualizar-cardapio/{id}(id=${item_cardapio.id})}" th:object="${item_cardapio}" method="post">
+  <div>Nome:<input type="text"  th:field="*{nome}" name="nome"></div>
+  <div>Descrição:<input type="text"th:field="*{descricao}" name="descricao"></div>
+  <div>preço:<input type="float" th:field="*{preco}" name="preco"></div>
+
+  <input type="submit" value="Atualizar">
+</form>
+</body>
+</html>

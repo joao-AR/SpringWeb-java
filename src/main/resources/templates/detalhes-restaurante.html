@@ -19,8 +19,35 @@
                 <td th:text="${restaurante.nome}"></td>
             </tr>
         </table>
+
+        <div th:switch="${itens_cardapio}">
+            <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
+            <div th:case="*">
+                <h2>Cardapio</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="itens_cardapio: ${itens_cardapio}">
+                        <td th:text="${itens_cardapio.nome}"></td>
+                        <td th:text="${itens_cardapio.descricao}"></td>
+                        <td th:text="${itens_cardapio.preco}"></td>
+                        <td><a th:href="@{/editar-cardapio/{id}(id=${itens_cardapio.id})}">Editar</a></td>
+                        <td><a th:href="@{/removerCardapio/{id}(id=${itens_cardapio.id})}">Remover</a></td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
         <form method="post">
-            <div>Nome:<input type="text" value="" name="nomeCardapio"></div>
+            <div>Nome:<input type="text" value="" name="nome"></div>
+            <div>Descrição:<input type="text" value="" name="descricao"></div>
+            <div>preço:<input type="float" value="" name="preco"></div>
+
+
             <input type="submit" value="Adicionar">
 
         </form>

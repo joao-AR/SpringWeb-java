@@ -10,7 +10,8 @@ public class Restaurante {
     private String nome;
 
     @OneToMany
-    private List<Cardapio> cardapios;
+    @JoinColumn(name="id_restaurante")
+    private List<Item_cardapio> cardapios;
 
     public int getId() {
         return id;
@@ -26,6 +27,7 @@ public class Restaurante {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 
 
 }
