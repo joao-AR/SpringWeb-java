@@ -5,54 +5,144 @@
     <title>Title</title>
 </head>
 <body>
-<div th:switch="${restaurante}">
-    <h2 th:case="null">Restaurante Não encontrado</h2>
-    <div th:case="*">
-        <h2>Restaurantes</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Nome</th>
-            </tr>
-            </thead>
-            <tr th:each="restaurante: ${restaurante}">
-                <td th:text="${restaurante.nome}"></td>
-            </tr>
-        </table>
-
-        <div th:switch="${itens_cardapio}">
-            <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
-            <div th:case="*">
-                <h2>Cardapio</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                    </tr>
-                    </thead>
-                    <tr th:each="itens_cardapio: ${itens_cardapio}">
-                        <td th:text="${itens_cardapio.nome}"></td>
-                        <td th:text="${itens_cardapio.descricao}"></td>
-                        <td th:text="${itens_cardapio.preco}"></td>
-                        <td><a th:href="@{/editar-cardapio/{id}(id=${itens_cardapio.id})}">Editar</a></td>
-                        <td><a th:href="@{/removerCardapio/{id}(id=${itens_cardapio.id})}">Remover</a></td>
-                    </tr>
-                </table>
-            </div>
-            <br/>
-        <form method="post">
-            <div>Nome:<input type="text" value="" name="nome"></div>
-            <div>Descrição:<input type="text" value="" name="descricao"></div>
-            <div>preço:<input type="float" value="" name="preco"></div>
-
-
-            <input type="submit" value="Adicionar">
-
-        </form>
+    <div  class="header">
+        <span>Admin Ifood / Detalhes</span>
     </div>
-    <p><a href="/novo-restaurante">Adiconar Novo Restaurante</a></p>
-</div>
+
+    <div th:switch="${restaurante}">
+        <h2 th:case="null">Restaurante Não encontrado</h2>
+
+        <div th:case="*">
+            <div style="width: 100%; display: flex; justify-content: center;"><h2 style="font-size: 30px;">Restaurante</h2></div>
+            <div style="width: 100%; display: flex; justify-content: center;"><span  style="font-size: 25px;" th:text="${restaurante.nome}"></span></div>
+            
+            <div th:switch="${itens_cardapio}">
+                <div th:case="*">
+                    <div style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <h2 style="font-size: 30px;">Cardapio</h2>
+                        <div style=" width: 750px; border: #EA1D2C 3px solid ; border-radius: 7px; font-size: 25px; background-color: rgba(0, 0, 0, 0.082);">
+                            <table style=" margin:20px; color: #000000bd;">
+                                <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Preço</th>
+                                </tr>
+                                </thead>
+                                <tr th:each="itens_cardapio: ${itens_cardapio}" style="text-align: center;">
+                                    <td style="font-weight: 600; width: 200px;" th:text="${itens_cardapio.nome}"></td>
+                                    <td style="font-weight: 600; width: 200px;" th:text="${itens_cardapio.descricao}"></td>
+                                    <td  style="font-weight: 600; width: 200px; "th:text="${itens_cardapio.preco}"></td>
+                                    <td><a th:href="@{/editar-cardapio/{id}(id=${itens_cardapio.id})}">Editar</a></td>
+                                    <td><a th:href="@{/removerCardapio/{id}(id=${itens_cardapio.id})}">Remover</a></td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                        
+                        <div style="width: 100%; display: flex; justify-content: center;"><h2 style="font-size: 30px;">Adicionar Novo item</h2></div>
+                        <div class="container" style="height:auto">
+
+                            <form method="post">
+                                <div>Nome:<input class="inp" type="text" value="" name="nome"></div>
+                                <div>Descrição:<input  class="inp" type="text" value="" name="descricao"></div>
+                                <div>preço:<input  class="inp"  type="float" value="" name="preco"></div>
+                                <input class = "btn" type="submit" value="Adicionar">
+                            </form>
+                        </div>
+                        <p><a href="/">Voltar para o começo</a></p>
+                    </div>
+                    
+                </div>
+               
+        </div>
+    </div>
 </body>
 </html>
+
+
+<style>
+    body{
+        margin: 0px;  font-family: 'Trebuchet MS', sans-serif; background-color: #e7e7e7;
+    }
+    .header{
+        display:flex ; 
+        justify-content: left; 
+        align-items: center;
+
+        background-color: #EA1D2C; 
+        height: 40px;
+        width: 100%; 
+    }
+
+    .header >span{
+        margin-left:10px; color: #fff; font-weight: bold; font-size: 20px;
+    }
+
+    .container{
+        width: 100%;
+        height: 100vh; 
+        display:flex; 
+        align-items: center; 
+        justify-content: center; 
+        flex-direction: column;
+        font-size: 25px;
+    }
+    form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .btn{
+        margin:0px;
+        height: 40px;
+        font-size: 30px;
+        color: #fff;
+        background-color: #EA1D2C;
+        border-style: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+    }
+
+    .inpNome{
+        height: 40px; width: 400px; margin: 0px 10px 0px 10px; font-size: 25px;
+    }
+    td > a{
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        background-color: #EA1D2C;
+        border-radius: 5px;
+        height: 20px; 
+        margin: 0px 20px 0px 20px;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+    }
+    tr{
+        height: 60px;
+    }
+
+    p{
+        display: flex;
+    }
+    p > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        background-color: #EA1D2C;
+        height: 50px;
+        width: 400px;
+        border-radius: 5px;
+        font-size: 25px;
+        margin: 0px 20px 0px 20px;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+        text-align: center;
+    }
+    .inp{
+        height: 40px; width: 300px; margin: 0px 10px 0px 10px; font-size: 25px;
+    }    
+</style>

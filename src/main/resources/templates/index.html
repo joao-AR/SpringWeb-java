@@ -4,31 +4,87 @@
     <meta charset="UTF-8">
     <title>Admin ifood</title>
 </head>
-<body style="margin: 0px;">
-    <div style="width: 100%; display:flex ; justify-content: left; background-color: #EA1D2C;">
-        <span style="color: #fff;">Admin Ifood</span>
+<body >
+    <div  class="header">
+        <span>Admin Ifood</span>
     </div>
-    <div th:switch="${restaurantes}">
+    <div th:switch="${restaurantes}" style=" width: 100%; display:flex; align-items: center; justify-content: center; flex-direction: column;">
         <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
         <div th:case="*">
-            <h2>Restaurantes</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                </tr>
-                </thead>
-                <tr th:each="restaurante: ${restaurantes}">
-                    <td th:text="${restaurante.nome}"></td>
-                    <td><a th:href="@{/iditar/{id}(id=${restaurante.id})}">Editar</a></td>
-                    <td><a th:href="@{/remover/{id}(id=${restaurante.id})}">Remover</a></td>
-                    <td><a th:href="@{/detalhes/{id}(id=${restaurante.id})}">Cardapio</a></td>
+            <div style="width: 100%; display: flex; justify-content: center;">
 
+                <h2 style="font-size: 30px;">Restaurantes</h2>
+            </div>
+            
+            <div style="border: #EA1D2C 3px solid ; border-radius: 7px; font-size: 25px; background-color: rgba(0, 0, 0, 0.082);">
 
-                </tr>
-            </table>
+                <table style="margin:20px; color: #000000bd;">
+                    
+                    <tr th:each="restaurante: ${restaurantes}">
+                        <td style="font-weight: 600;" th:text="${restaurante.nome}"></td>
+                        <td><a th:href="@{/iditar/{id}(id=${restaurante.id})}">Editar</a></td>
+                        <td><a th:href="@{/remover/{id}(id=${restaurante.id})}">Remover</a></td>
+                        <td><a th:href="@{/detalhes/{id}(id=${restaurante.id})}">Cardapio</a></td>
+    
+    
+                    </tr>
+                </table>
+            </div>
         </div>
         <p><a href="/novo-restaurante">Adiconar Novo Restaurante</a></p>
     </div>
 </body>
 </html>
+
+<style>
+    body{
+        margin: 0px;  font-family: 'Trebuchet MS', sans-serif; background-color: #e7e7e7;
+    }
+    .header{
+        display:flex ; 
+        justify-content: left; 
+        align-items: center;
+
+        background-color: #EA1D2C; 
+        height: 40px;
+        width: 100%; 
+    }
+
+    .header >span{
+        margin-left:10px; color: #fff; font-weight: bold; font-size: 20px;
+    }
+    td > a{
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        background-color: #EA1D2C;
+       
+        border-radius: 5px;
+        height: 20px; 
+        margin: 0px 20px 0px 20px;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+    }
+    tr{
+        height: 60px;
+    }
+    p{
+        display: flex;
+    }
+    p > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        background-color: #EA1D2C;
+        height: 50px;
+        width: 400px;
+        border-radius: 5px;
+        font-size: 25px;
+        margin: 0px 20px 0px 20px;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+        text-align: center;
+    }
+    
+</style>
