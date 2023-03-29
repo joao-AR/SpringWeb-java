@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div  class="header">
+    <span>Admin Ifood / Atualziar Cardapio</span>
+  </div>
+  <div class="container">
+    <form action="#" th:action="@{/atualizar-cardapio/{id}(id=${item_cardapio.id})}" th:object="${item_cardapio}" method="post">
+      <div>Nome:<input class="inp" type="text"  th:field="*{nome}" name="nome"></div>
+      <div>Descrição:<input  class="inp"  type="text"th:field="*{descricao}" name="descricao"></div>
+      <div>preço:<input class="inp"  type="float" th:field="*{preco}" name="preco"></div>
+
+      <input class = "btn" type="submit" value="Atualizar">
+    </form>
+    <p><a href="/">Voltar para o começo</a></p>
+  </div>
+
+   
+</body>
+</html>
+
+<style>
+  body{
+      margin: 0px;  font-family: 'Trebuchet MS', sans-serif; background-color: #e7e7e7;
+  }
+  .header{
+      display:flex ; 
+      justify-content: left; 
+      align-items: center;
+
+      background-color: #EA1D2C; 
+      height: 40px;
+      width: 100%; 
+  }
+
+  .header >span{
+      margin-left:10px; color: #fff; font-weight: bold; font-size: 20px;
+  }
+
+  .container{
+      width: 100%;
+      height: 100vh; 
+      display:flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-direction: column;
+      font-size: 25px;
+     
+  }
+  form{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+  }
+  .btn{
+      margin:0px;
+      height: 40px;
+      font-size: 30px;
+      color: #fff;
+      background-color: #EA1D2C;
+      border-style: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+  }
+
+  .inp{
+      height: 40px; width: 400px; margin: 0px 10px 0px 10px; font-size: 25px;
+  }
+
+  p{
+        display: flex;
+  }
+    p > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        background-color: #EA1D2C;
+        height: 50px;
+        width: 400px;
+        border-radius: 5px;
+        font-size: 25px;
+        margin: 0px 20px 0px 20px;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+        text-align: center;
+    }
+</style>
