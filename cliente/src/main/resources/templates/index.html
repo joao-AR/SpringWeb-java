@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin ifood</title>
+    <title>Consumidor ifood</title>
 </head>
 <body >
     <div  class="header">
-        <span>Admin Ifood</span>
+        <span>Consumidor Ifood</span>
     </div>
     <div th:switch="${restaurantes}" style=" width: 100%; display:flex; align-items: center; justify-content: center; flex-direction: column;">
         <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
@@ -56,7 +56,6 @@
         color: #fff;
         border: #EA1D2C solid 3px;
         background-color: #EA1D2C;
-       
         border-radius: 5px;
         height: 20px; 
         margin: 0px 20px 0px 20px;

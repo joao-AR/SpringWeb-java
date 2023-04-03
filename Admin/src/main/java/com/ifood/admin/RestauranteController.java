@@ -47,11 +47,13 @@ public class RestauranteController {
 
     @PostMapping("/atualizar/{id}")
     public String atualizarRestaurante(@PathVariable("id") int id, @Valid Restaurante restaurante, BindingResult result, Model model){
+        Restaurante restaurante1 = restauranteRepository.findById(id).orElseThrow((() -> new IllegalArgumentException("o id do resturante é invalido" +id))); 
         if (result.hasErrors()) {
             restaurante.setId(id);
             return "atualizar-restaurante";
         }
-        restauranteRepository.save(restaurante);
+        restaurante1.setNome(restaurante.getNome());
+        restauranteRepository.save(restaurante1);
         return "redirect:/index";
     }
 
