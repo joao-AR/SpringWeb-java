@@ -1,44 +1,40 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrinho</title>
-    <link rel="stylesheet" href="./main.css">
-</head>
-<body>
-<div  class="header">
-    <span>Consumidor Ifood / Carrinho</span>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Carrinho</title>
+    </head>
+    <body>
+        <div  class="header"><span>Consumidor Ifood / Carrinho</span></div>
 
+        <div class="carrinho-container">
+            <h2>Carrinho</h2>
+            <div class="box-carrinho">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>preco</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${sessionCarrinho}">
+                            <td th:text="${item.nome}"></td>
+                            <td th:text="${item.preco}"></td>
+                            <td th:text="${item.quantidade}"></td>
+                            <td><a class="btnAdd"  th:href="@{/carrinho/{id}(id=${item.id})}">+</a></td>
+                            <td><a class="btnSub" th:href="@{/sub-carrinho/{id}(id=${item.id})}">-</a></td>
+                            <td><a class="btnRemove" th:href="@{/remover-carrinho/{id}(id=${item.id})}">remover</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="/">Voltar para o começo</a></p>
+        </div>
 
-<div style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-    <h2 style="font-size: 30px;">Carrinho</h2>
-    <div style=" width: 750px; border: #EA1D2C 3px solid ; border-radius: 7px; font-size: 25px; background-color: rgba(0, 0, 0, 0.082);">
-        <table  style=" margin:20px; color: #000000bd;">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>preco</th>
-                    <th>Quantidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${sessionCarrinho}">
-                    <td th:text="${item.nome}"></td>
-                    <td th:text="${item.preco}"></td>
-                    <td th:text="${item.quantidade}"></td>
-                    <td><a  class="btnAdd"  th:href="@{/carrinho/{id}(id=${item.id})}">+</a></td>
-                    <td>  <a  class="btnSub" th:href="@{/sub-carrinho/{id}(id=${item.id})}">-</a></td>
-                    <td><a class="btnRemove" th:href="@{/remover-carrinho/{id}(id=${item.id})}">remover</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <p><a href="/">Voltar para o começo</a></p>
-</div>
-
-</body>
+    </body>
 </html>
 
 <style>
@@ -63,42 +59,49 @@
         font-size: 20px;
     }
 
-    form{
+    .carrinho-container{
+        width: 100%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        flex-direction: column;
+    }
+
+    h2{ font-size: 30px }
+    
+    .box-carrinho{
+        width: 750px; 
+        border: #EA1D2C 3px solid ; 
+        border-radius: 7px; 
+        font-size: 25px; 
+        background-color: rgba(0, 0, 0, 0.082);
+    }
+    table{
+        margin:20px; 
+        color: #000000bd;
+    }
+    a{  
         display: flex;
         align-items: center;
         justify-content: center;
-
-    }
-
-    td > a{
         text-decoration: none;
         color: #fff;
         border: #EA1D2C solid 3px;
-        background-color: #EA1D2C;
         border-radius: 5px;
-        height: 20px;
-        margin: 0px 20px 0px 20px;
+        background-color: #EA1D2C;
         box-shadow: 0px 7px 7px 0px #00000071 ;
+        margin: 0px 20px 0px 20px;
+        
     }
-    tr{height: 60px;}
 
-    p{display: flex;}
+    td > a { height: 30px; }
+    tr { height: 60px; }
+    p { display: flex; }
 
     p > a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #fff;
-        border: #EA1D2C solid 3px;
-        background-color: #EA1D2C;
         height: 50px;
         width: 400px;
-        border-radius: 5px;
         font-size: 25px;
-        margin: 0px 20px 0px 20px;
-        box-shadow: 0px 7px 7px 0px #00000071 ;
-        text-align: center;
     }
     .btnAdd{
         display: flex;

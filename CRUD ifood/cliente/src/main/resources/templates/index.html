@@ -1,87 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Consumidor ifood</title>
-</head>
-<body >
-    <div  class="header">
-        <span>Consumidor Ifood</span>
-    </div>
-    <div th:switch="${restaurantes}" style=" width: 100%; display:flex; align-items: center; justify-content: center; flex-direction: column;">
-        <h2 th:case="null">Ainda não temos restaurantes cadastrados</h2>
-        <div th:case="*">
-            <div style="width: 100%; display: flex; justify-content: center;">
-
-                <h2 style="font-size: 30px;">Restaurantes</h2>
+    <head>
+        <link rel="stylesheet" href="css/main.css">
+        <meta charset="UTF-8">
+        <title>Consumidor ifood</title>
+    </head>
+    <body >
+        <div  class="header"><span>Consumidor Ifood</span></div>
+        <div class="restaurantes-container" th:switch="${restaurantes}">
+            <div  class="h2-container"><h2 th:case="null">Ainda não temos restaurantes cadastrados</h2></div>
+            <div th:case="*">
+                <div  class="h2-container"><h2>Restaurantes</h2></div>
+                
+                <div class="box-restaurantes">
+                    <table>
+                        <tr th:each="restaurante: ${restaurantes}">
+                            <td class="nome-restaurante" th:text="${restaurante.nome}"></td>
+                            <td><a th:href="@{/detalhes/{id}(id=${restaurante.id})}">Cardapio</a></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            
-            <div style="border: #EA1D2C 3px solid ; border-radius: 7px; font-size: 25px; background-color: rgba(0, 0, 0, 0.082);">
-
-                <table style="margin:20px; color: #000000bd;">
-                    
-                    <tr th:each="restaurante: ${restaurantes}">
-                        <td style="font-weight: 600;" th:text="${restaurante.nome}"></td>
-                        <td><a th:href="@{/detalhes/{id}(id=${restaurante.id})}">Cardapio</a></td>
-    
-    
-                    </tr>
-                </table>
-            </div>
+            <p><a href="/carrinho">Meu carrinho</a></p>
         </div>
-        <p><a href="/carrinho">Meu carrinho</a></p>
-    </div>
-</body>
+    </body>
 </html>
 
 <style>
+    
     body{
-        margin: 0px;  font-family: 'Trebuchet MS', sans-serif; background-color: #e7e7e7;
+    margin: 0px;  
+    font-family: 'Trebuchet MS', sans-serif; 
+    background-color: #e7e7e7;
     }
+    
     .header{
         display:flex ; 
         justify-content: left; 
         align-items: center;
-
         background-color: #EA1D2C; 
         height: 40px;
         width: 100%; 
     }
 
-    .header >span{
-        margin-left:10px; color: #fff; font-weight: bold; font-size: 20px;
+    .header > span{
+        margin-left:10px; 
+        color: #fff; 
+        font-weight: bold; 
+        font-size: 20px;
     }
-    td > a{
-        text-decoration: none;
-        color: #fff;
-        border: #EA1D2C solid 3px;
-        background-color: #EA1D2C;
-        border-radius: 5px;
-        height: 20px; 
-        margin: 0px 20px 0px 20px;
-        box-shadow: 0px 7px 7px 0px #00000071 ;
+
+    .restaurantes-container{
+        display:flex; 
+        align-items: center; 
+        justify-content: center; 
+        flex-direction: column;
+        width: 100%;
     }
-    tr{
-        height: 60px;
+
+    .h2-container{
+        display: flex; 
+        justify-content: center;
+        width: 100%;
     }
-    p{
-        display: flex;
+
+    h2{ font-size: 30px }
+    .nome-restaurante{ font-weight: 600; }
+
+    .box-restaurantes{
+        font-size: 25px; 
+        border: #EA1D2C 3px solid ; 
+        border-radius: 7px;
+        background-color: rgba(0, 0, 0, 0.082);
     }
-    p > a {
+
+    table{
+        margin:20px; 
+        color: #000000bd;
+    }
+    a{  
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
         color: #fff;
         border: #EA1D2C solid 3px;
+        border-radius: 5px;
         background-color: #EA1D2C;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+        margin: 0px 20px 0px 20px;
+        
+    }
+
+    td > a { height: 30px; }
+    tr { height: 60px; }
+    p { display: flex; }
+
+    p > a {
         height: 50px;
         width: 400px;
-        border-radius: 5px;
         font-size: 25px;
-        margin: 0px 20px 0px 20px;
-        box-shadow: 0px 7px 7px 0px #00000071 ;
-        text-align: center;
     }
-    
+
 </style>

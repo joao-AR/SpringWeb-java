@@ -1,136 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div  class="header">
-        <span>Consumidor Ifood / Cardapio</span>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div  class="header"><span>Consumidor Ifood / Cardapio</span></div>
 
-    <div th:switch="${restaurante}">
-        <h2 th:case="null">Restaurante Não encontrado</h2>
+        <div th:switch="${restaurante}">
+            <div class="flex-centro"> <h2 th:case="null">Restaurante Não encontrado</h2></div>
 
-        <div th:case="*">
-            <div style="width: 100%; display: flex; justify-content: center;"><h2 style="font-size: 30px;">Restaurante</h2></div>
-            <div style="width: 100%; display: flex; justify-content: center;"><span  style="font-size: 25px;" th:text="${restaurante.nome}"></span></div>
-            
-            <div th:switch="${itens_cardapio}">
-                <div th:case="*">
-                    <div style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                        <h2 style="font-size: 30px;">Cardapio</h2>
-                        <div style=" width: 750px; border: #EA1D2C 3px solid ; border-radius: 7px; font-size: 25px; background-color: rgba(0, 0, 0, 0.082);">
-                            <table style=" margin:20px; color: #000000bd;">
-                                <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Preço</th>
-                                </tr>
-                                </thead>
-                                <tr th:each="itens_cardapio: ${itens_cardapio}" style="text-align: center;">
-                                    <td style="font-weight: 600; width: 200px;" th:text="${itens_cardapio.nome}"></td>
-                                    <td style="font-weight: 600; width: 200px;" th:text="${itens_cardapio.descricao}"></td>
-                                    <td  style="font-weight: 600; width: 200px; "th:text="${itens_cardapio.preco}"></td>
-                                    <td><a th:href="@{/carrinho/{id}(id=${itens_cardapio.id})}">Carrinho</a></td>
-
-                                </tr>
-                            </table>
+            <div th:case="*">
+                <div class="flex-centro"><h2>Restaurante</h2></div>
+                <div class="flex-centro"><span th:text="${restaurante.nome}"></span></div>
+                
+                <div th:switch="${itens_cardapio}">
+                    <div th:case="*">
+                        <div class="flex-centro cardapio-container">
+                            <h2>Cardapio</h2>
+                            <div class="box-cardapio">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Descrição</th>
+                                            <th>Preço</th>
+                                        </tr>
+                                    </thead>
+                                    <tr th:each="itens_cardapio: ${itens_cardapio}" style="text-align: center;">
+                                        <td class="td-infos" th:text="${itens_cardapio.nome}"></td>
+                                        <td class="td-infos" th:text="${itens_cardapio.descricao}"></td>
+                                        <td class="td-infos" th:text="${itens_cardapio.preco}"></td>
+                                        <td><a th:href="@{/carrinho/{id}(id=${itens_cardapio.id})}">Carrinho</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p><a href="/">Voltar para o começo</a></p>
                         </div>
-                        <p><a href="/">Voltar para o começo</a></p>
                     </div>
-                    
-                </div>
-               
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
 
 
 <style>
     body{
-        margin: 0px;  font-family: 'Trebuchet MS', sans-serif; background-color: #e7e7e7;
+        margin: 0px;  
+        font-family: 'Trebuchet MS', sans-serif; 
+        background-color: #e7e7e7;
     }
+    
+    .flex-centro{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div > span{ font-size: 25px;}
+
     .header{
         display:flex ; 
         justify-content: left; 
         align-items: center;
-
         background-color: #EA1D2C; 
         height: 40px;
         width: 100%; 
     }
 
-    .header >span{
-        margin-left:10px; color: #fff; font-weight: bold; font-size: 20px;
+    .header > span{
+        margin-left:10px; 
+        color: #fff; 
+        font-weight: bold; 
+        font-size: 20px;
     }
 
-    .container{
+    
+    .h2-container{
+        display: flex; 
+        justify-content: center;
         width: 100%;
-        height: 100vh; 
-        display:flex; 
-        align-items: center; 
-        justify-content: center; 
-        flex-direction: column;
-        font-size: 25px;
     }
-    form{
+    
+    h2{ font-size: 30px }
+    .cardapio-container{ flex-direction: column }
+    
+    .box-cardapio{
+        width: 750px; 
+        border: #EA1D2C 3px solid ; 
+        border-radius: 7px; 
+        font-size: 25px; 
+        background-color: rgba(0, 0, 0, 0.082);
+    }
+    
+    table{
+        margin:20px; 
+        color: #000000bd;
+    }
+
+    .td-infos{
+        font-weight: 600;
+        width: 200px; 
+    }
+    
+
+    a{  
         display: flex;
         align-items: center;
         justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        border: #EA1D2C solid 3px;
+        border-radius: 5px;
+        background-color: #EA1D2C;
+        box-shadow: 0px 7px 7px 0px #00000071 ;
+        margin: 0px 20px 0px 20px;
         
     }
-    .btn{
-        margin:0px;
-        height: 40px;
-        font-size: 30px;
-        color: #fff;
-        background-color: #EA1D2C;
-        border-style: none;
-        border-radius: 5px;
-        cursor: pointer;
 
-    }
+    td > a { height: 30px; }
+    tr { height: 60px; }
+    p { display: flex; }
 
-    .inpNome{
-        height: 40px; width: 400px; margin: 0px 10px 0px 10px; font-size: 25px;
-    }
-    td > a{
-        text-decoration: none;
-        color: #fff;
-        border: #EA1D2C solid 3px;
-        background-color: #EA1D2C;
-        border-radius: 5px;
-        height: 20px; 
-        margin: 0px 20px 0px 20px;
-        box-shadow: 0px 7px 7px 0px #00000071 ;
-    }
-    tr{
-        height: 60px;
-    }
-
-    p{
-        display: flex;
-    }
     p > a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #fff;
-        border: #EA1D2C solid 3px;
-        background-color: #EA1D2C;
         height: 50px;
         width: 400px;
-        border-radius: 5px;
         font-size: 25px;
-        margin: 0px 20px 0px 20px;
-        box-shadow: 0px 7px 7px 0px #00000071 ;
-        text-align: center;
     }
-    .inp{
-        height: 40px; width: 300px; margin: 0px 10px 0px 10px; font-size: 25px;
-    }    
 </style>
